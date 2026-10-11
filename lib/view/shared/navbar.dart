@@ -1,10 +1,12 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:orderproject/Const/const.dart';
 import 'package:orderproject/controller/state/sidebar_controller.dart';
 
 class Navbar extends StatelessWidget {
-  Navbar({Key? key}) : super(key: key);
+  Navbar({super.key});
 
   SidebarController sc = Get.find<SidebarController>();
 
@@ -30,7 +32,7 @@ class Navbar extends StatelessWidget {
             onTap: () {
               sc.changeSidebar();
             },
-            child: Container(
+            child: SizedBox(
               height: 50,
               width: 50,
               child: const Icon(

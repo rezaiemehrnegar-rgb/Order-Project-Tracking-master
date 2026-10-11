@@ -28,7 +28,8 @@ class OrderController {
     return await db.delete("orders", ["id"], [id]);
   }
 
-  deleteOrderList(List<String> list) async {
-    return await db.select("DELETE FROM orders WHERE id IN (${list.join(",")})");
+  Future<List<Map<String, Object?>>> deleteOrderList(List<String> list) async {
+    return await db
+        .select("DELETE FROM orders WHERE id IN (${list.join(",")})");
   }
 }

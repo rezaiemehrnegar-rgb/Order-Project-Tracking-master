@@ -10,7 +10,7 @@ import '../statistics/chart/column_chart.dart';
 import 'widget/stat_card.dart';
 
 class HomeIndex extends StatefulWidget {
-  const HomeIndex({Key? key}) : super(key: key);
+  const HomeIndex({super.key});
 
   @override
   State<HomeIndex> createState() => _HomeIndexState();
@@ -20,7 +20,7 @@ class _HomeIndexState extends State<HomeIndex> {
   final AsyncMemoizer _memoizer = AsyncMemoizer();
   Statistics st = Statistics();
 
-  fetchData() async {
+  Future<Future<dynamic>> fetchData() async {
     return _memoizer.runOnce(() async {
       await getData();
       return true;
@@ -194,8 +194,14 @@ class _HomeIndexState extends State<HomeIndex> {
                   children: List.generate(
                     cardData.map((e) => e['group']).toSet().toList().length,
                     (index) {
-                      var chartList = chartData.where((element) => element['group'] == index.toString()).toList();
-                      var cardList = cardData.where((element) => element['group'] == index.toString()).toList();
+                      var chartList = chartData
+                          .where(
+                              (element) => element['group'] == index.toString())
+                          .toList();
+                      var cardList = cardData
+                          .where(
+                              (element) => element['group'] == index.toString())
+                          .toList();
                       return Container(
                         margin: const EdgeInsets.only(bottom: 30),
                         child: Wrap(
@@ -229,7 +235,8 @@ class _HomeIndexState extends State<HomeIndex> {
                                       title: chartList[index3]["title"],
                                       color: chartList[index3]["color"],
                                       data: chartList[index3]["value"],
-                                      year: chartList[index3]["data"]["year"] ?? "",
+                                      year: chartList[index3]["data"]["year"] ??
+                                          "",
                                     );
                                   },
                                 ),
@@ -300,7 +307,8 @@ class _HomeIndexState extends State<HomeIndex> {
       String column = item["data"]["column"];
       String? year = item["data"]["year"];
       String? select = item["data"]["select"];
-      Map<String, dynamic> mapData = await st.getMonthlyData(table, column, year, select);
+      Map<String, dynamic> mapData =
+          await st.getMonthlyData(table, column, year, select);
 
       List<ChartData> value = [];
       mapData.forEach((key, val) {

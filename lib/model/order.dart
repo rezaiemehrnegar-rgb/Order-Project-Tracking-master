@@ -50,27 +50,27 @@ class OrderModel {
     status = json['status'];
     title = json['title'];
     urgency = json['urgency'];
-    customerData = new CustomerModel.fromJson(json);
+    customerData = CustomerModel.fromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['created_date'] = this.createdDate;
-    data['customer'] = this.customer;
-    data['delivery_date'] = this.deliveryDate;
-    data['details'] = this.details;
-    data['file_path'] = this.filePath;
-    data['id'] = this.id;
-    data['lastupdate'] = this.lastupdate;
-    data['percentage'] = this.percentage;
-    data['price'] = this.price;
-    data['source'] = this.source;
-    data['start_date'] = this.startDate;
-    data['status'] = this.status;
-    data['title'] = this.title;
-    data['urgency'] = this.urgency;
-    if (this.customerData != null) {
-      data['customerData'] = this.customerData!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['created_date'] = createdDate;
+    data['customer'] = customer;
+    data['delivery_date'] = deliveryDate;
+    data['details'] = details;
+    data['file_path'] = filePath;
+    data['id'] = id;
+    data['lastupdate'] = lastupdate;
+    data['percentage'] = percentage;
+    data['price'] = price;
+    data['source'] = source;
+    data['start_date'] = startDate;
+    data['status'] = status;
+    data['title'] = title;
+    data['urgency'] = urgency;
+    if (customerData != null) {
+      data['customerData'] = customerData!.toJson();
     }
     return data;
   }

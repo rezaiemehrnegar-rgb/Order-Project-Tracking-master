@@ -24,13 +24,17 @@ class StatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ZoomIn(
       child: Container(
-        constraints: BoxConstraints(maxWidth: Get.width < 600 || isMobile() ? double.infinity : 275),
-        margin: EdgeInsets.only(top: 15, right: isMobileSize() ? 0 : 10, left: isMobileSize() ? 0 : 10),
+        constraints: BoxConstraints(
+            maxWidth: Get.width < 600 || isMobile() ? double.infinity : 275),
+        margin: EdgeInsets.only(
+            top: 15,
+            right: isMobileSize() ? 0 : 10,
+            left: isMobileSize() ? 0 : 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: greyColor.withOpacity(0.2),
+              color: greyColor.withValues(alpha: 0.2),
               blurRadius: 3,
               offset: const Offset(0, 3),
             ),

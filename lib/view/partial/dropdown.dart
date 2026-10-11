@@ -47,7 +47,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
   OverlayState? overlayState;
   OverlayEntry? overlayEntry;
 
-  closeOverlay() {
+  void closeOverlay() {
     overlayEntry?.remove();
     overlayEntry = null;
     overlayState = null;
@@ -58,7 +58,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
     }
   }
 
-  buildOverlay(BuildContext context) {
+  void buildOverlay(BuildContext context) {
     RenderBox renderBox = key.currentContext!.findRenderObject() as RenderBox;
     Offset startOffset = renderBox.localToGlobal(Offset.zero);
     double y = startOffset.dy + renderBox.size.height;
@@ -91,19 +91,24 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
                     duration: const Duration(milliseconds: 300),
                     child: Container(
                       width: double.infinity,
-                      constraints: BoxConstraints(maxWidth: isMobileSize() ? double.infinity : widget.maxWidth, maxHeight: 200),
+                      constraints: BoxConstraints(
+                          maxWidth: isMobileSize()
+                              ? double.infinity
+                              : widget.maxWidth,
+                          maxHeight: 200),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
+                            color: Colors.grey.withValues(alpha: 0.5),
                             blurRadius: 1,
                             offset: const Offset(0, 2),
                           ),
                         ],
                       ),
-                      margin: const EdgeInsets.only(top: 5, right: 5, left: 5, bottom: 5),
+                      margin: const EdgeInsets.only(
+                          top: 5, right: 5, left: 5, bottom: 5),
                       child: Scrollbar(
                         thumbVisibility: true,
                         controller: scrollController,
@@ -116,15 +121,20 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
                           itemBuilder: (context, index) {
                             return InkWell(
                               onTap: () {
-                                widget.onSelect(widget.items.keys.toList()[index], widget.items.values.toList()[index]);
-                                defaultText = widget.items.values.toList()[index];
+                                widget.onSelect(
+                                    widget.items.keys.toList()[index],
+                                    widget.items.values.toList()[index]);
+                                defaultText =
+                                    widget.items.values.toList()[index];
                                 closeOverlay();
                               },
                               child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
                                 child: Text(
                                   widget.items.values.toList()[index],
-                                  style: GoogleFonts.quicksand(color: Colors.grey),
+                                  style:
+                                      GoogleFonts.quicksand(color: Colors.grey),
                                 ),
                               ),
                             );
@@ -145,7 +155,6 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (widget.label == null) {
       defaultText = widget.items[widget.selectKey] ?? "choose".tr;
@@ -165,7 +174,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.grey.withValues(alpha: 0.5),
             blurRadius: 1,
             offset: const Offset(0, 2),
           ),
@@ -195,7 +204,9 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
               child: Container(
                 key: key,
                 width: double.infinity,
-                constraints: BoxConstraints(maxWidth: isMobileSize() ? double.infinity : widget.maxWidth),
+                constraints: BoxConstraints(
+                    maxWidth:
+                        isMobileSize() ? double.infinity : widget.maxWidth),
                 decoration: boxDecoration,
                 padding: widget.topPadding,
                 child: Row(
@@ -220,7 +231,9 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
                         color: primaryColor,
                         size: 20,
                       ),
-                      crossFadeState: !openMenu ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                      crossFadeState: !openMenu
+                          ? CrossFadeState.showFirst
+                          : CrossFadeState.showSecond,
                       duration: const Duration(milliseconds: 300),
                     ),
                   ],

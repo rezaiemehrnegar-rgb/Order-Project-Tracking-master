@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +27,6 @@ class _SetupPageState extends State<SetupPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     gc.formData["appname"] = "";
     gc.formData["first_mail"] = "aksoyhlc@gmail.com";
@@ -61,7 +62,7 @@ class _SetupPageState extends State<SetupPage> {
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
-                      color: whiteColor.withOpacity(0.3),
+                      color: whiteColor.withValues(alpha: 0.3),
                       blurRadius: 10,
                       offset: Offset(0, 10),
                     ),
@@ -160,10 +161,12 @@ class _SetupPageState extends State<SetupPage> {
                               await db.setSettings("setup", "true");
 
                               if (status) {
-                                showSnackBar(context, "success".tr, "setup_ok".tr, 1);
+                                showSnackBar(
+                                    context, "success".tr, "setup_ok".tr, 1);
                                 Get.offAll(() => const MainHomePage());
                               } else {
-                                showSnackBar(context, "error".tr, "setup_error".tr, 0);
+                                showSnackBar(
+                                    context, "error".tr, "setup_error".tr, 0);
                                 await Future.delayed(Duration(seconds: 2));
                                 showSnackBar(context, "error".tr, "", 0);
                               }

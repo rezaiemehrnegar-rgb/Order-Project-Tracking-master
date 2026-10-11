@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -36,12 +38,15 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     gc.formData.clear();
     gc.dataController.clear();
     if (widget.order != null) {
-      selectedFile = widget.order?.filePath == null ? null : File(gc.documentDirectory.value + fileUploadFolderName + (widget.order?.filePath ?? ""));
+      selectedFile = widget.order?.filePath == null
+          ? null
+          : File(gc.documentDirectory.value +
+              fileUploadFolderName +
+              (widget.order?.filePath ?? ""));
       gc.formData.addAll({
         "id": widget.order?.id.toString(),
         "title": widget.order?.title,
@@ -130,16 +135,22 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                       padding: const EdgeInsets.all(10),
                       child: CustomDropDownMenu(
                         maxWidth: 0.25.sw,
-                        items: {for (var e in Status.values) e.index.toString(): e.toString().split(".").last.toLowerCase().tr},
+                        items: {
+                          for (var e in Status.values)
+                            e.index.toString():
+                                e.toString().split(".").last.toLowerCase().tr
+                        },
                         labelText: "status".tr,
                         selectKey: (widget.order?.status ?? 0).toString(),
                         onSelect: (key, value) {
                           gc.formData["status"] = key;
                         },
                         onInit: () {
-                          gc.formData["status"] = (widget.order?.status ?? 0).toString();
+                          gc.formData["status"] =
+                              (widget.order?.status ?? 0).toString();
                         },
-                        topPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+                        topPadding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 14),
                         boxDecoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
@@ -154,16 +165,22 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                       padding: const EdgeInsets.all(10),
                       child: CustomDropDownMenu(
                         maxWidth: 0.25.sw,
-                        items: {for (var e in Urgency.values) e.index.toString(): e.toString().split(".").last.toLowerCase().tr},
+                        items: {
+                          for (var e in Urgency.values)
+                            e.index.toString():
+                                e.toString().split(".").last.toLowerCase().tr
+                        },
                         labelText: "urgency".tr,
                         selectKey: (widget.order?.urgency ?? 0).toString(),
                         onSelect: (key, value) {
                           gc.formData["urgency"] = key;
                         },
                         onInit: () {
-                          gc.formData["urgency"] = (widget.order?.urgency ?? 0).toString();
+                          gc.formData["urgency"] =
+                              (widget.order?.urgency ?? 0).toString();
                         },
-                        topPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+                        topPadding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 14),
                         boxDecoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
@@ -179,11 +196,13 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                   children: [
                     FutureBuilder(
                       future: cc.customerList(),
-                      builder: (context, AsyncSnapshot<List<CustomerModel>> snapshot) {
+                      builder: (context,
+                          AsyncSnapshot<List<CustomerModel>> snapshot) {
                         if (snapshot.hasData) {
                           Map<String, String> items = {};
                           for (var element in snapshot.data!) {
-                            items[element.cusId.toString()] = element.name ?? "";
+                            items[element.cusId.toString()] =
+                                element.name ?? "";
                           }
 
                           return Container(
@@ -194,7 +213,8 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                               labelText: "customer".tr,
                               selectKey: widget.order?.customer ?? "0",
                               onSelect: (index, value) {},
-                              topPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+                              topPadding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 14),
                               boxDecoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
@@ -250,7 +270,8 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                                               width: 1,
                                               color: greyColor,
                                             ),
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           padding: const EdgeInsets.all(5),
                                           child: InkWell(
@@ -261,7 +282,8 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                                                   child: SingleChildScrollView(
                                                     child: Column(
                                                       children: [
-                                                        Image.file(selectedFile!),
+                                                        Image.file(
+                                                            selectedFile!),
                                                       ],
                                                     ),
                                                   ),
@@ -293,7 +315,8 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                                         },
                                         child: Icon(
                                           Icons.delete_forever_outlined,
-                                          color: redColor.withOpacity(0.7),
+                                          color:
+                                              redColor.withValues(alpha: 0.7),
                                         ),
                                       ),
                                     ],
@@ -304,7 +327,8 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                       const SizedBox(height: 10),
                       InkWell(
                         onTap: () async {
-                          FilePickerResult? result = await FilePicker.platform.pickFiles(
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles(
                             type: FileType.custom,
                             allowedExtensions: allowedExtensions,
                           );
@@ -354,7 +378,8 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                                     const SizedBox(width: 8),
                                     Text(
                                       "file_select".tr,
-                                      style: GoogleFonts.quicksand(color: whiteColor),
+                                      style: GoogleFonts.quicksand(
+                                          color: whiteColor),
                                     ),
                                   ],
                                 ),
@@ -405,7 +430,7 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                         "status": gc.formData["status"],
                         "urgency": gc.formData["urgency"],
                         "details": gc.formData["details"],
-                        "file_path": await fileUpload(gc.formData["file_path"]),
+                        "file_path": fileUpload(gc.formData["file_path"]),
                         "source": 3,
                         "lastupdate": DateTime.now().toString()
                       };
@@ -453,7 +478,8 @@ class _OrderCreateEditState extends State<OrderCreateEdit> {
                       children: [
                         const Icon(Icons.save_outlined, color: Colors.white),
                         const SizedBox(width: 5),
-                        Text("save".tr, style: GoogleFonts.quicksand(color: Colors.white)),
+                        Text("save".tr,
+                            style: GoogleFonts.quicksand(color: Colors.white)),
                       ],
                     ),
                   ),

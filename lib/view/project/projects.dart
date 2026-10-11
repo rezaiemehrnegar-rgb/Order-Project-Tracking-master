@@ -12,7 +12,7 @@ import '../partial/record_head.dart';
 import '../partial/table_widget.dart';
 
 class Projects extends StatefulWidget {
-  const Projects({Key? key}) : super(key: key);
+  const Projects({super.key});
 
   @override
   State<Projects> createState() => _ProjectsState();
@@ -53,7 +53,7 @@ class _ProjectsState extends State<Projects> {
   //List<List<String?>> rows = [];
   List<List<Map<String, String?>>> rows = [];
 
-  _fetchData() async {
+  Future<Future<dynamic>> _fetchData() async {
     return _memoizer.runOnce(() async {
       return await getData();
     });
@@ -69,8 +69,15 @@ class _ProjectsState extends State<Projects> {
           {'data': rawList[i].title, 'type': 'text'},
           {'data': rawList[i].startDate, 'type': 'text'},
           {'data': rawList[i].endDate, 'type': 'text'},
-          {'data': Status.values[rawList[i].status ?? 0].name.toLowerCase().tr, 'type': 'text'},
-          {'data': Urgency.values[rawList[i].priority ?? 0].name.toLowerCase().tr, 'type': 'text'},
+          {
+            'data': Status.values[rawList[i].status ?? 0].name.toLowerCase().tr,
+            'type': 'text'
+          },
+          {
+            'data':
+                Urgency.values[rawList[i].priority ?? 0].name.toLowerCase().tr,
+            'type': 'text'
+          },
           {'data': rawList[i].percentage.toString(), 'type': 'progress'},
           {'data': rawList[i].lastUpdate?.split(".").first, 'type': 'string'},
         ],
@@ -85,7 +92,8 @@ class _ProjectsState extends State<Projects> {
       title: "projects".tr,
       headRightWidget: recordListHead(
         onPressed: () async {
-          await pc.deleteProjectList(gc.checkList.map((e) => e.toString().split("_").last).toList());
+          await pc.deleteProjectList(
+              gc.checkList.map((e) => e.toString().split("_").last).toList());
           await getData();
           Get.back();
 

@@ -8,7 +8,12 @@ class RowCheckBox extends StatefulWidget {
   final bool value;
   final Function(bool check) onChanged;
 
-  const RowCheckBox({super.key, required this.text, this.value = false, required this.onChanged});
+  const RowCheckBox({
+    super.key,
+    required this.text,
+    this.value = false,
+    required this.onChanged,
+  });
 
   @override
   State<RowCheckBox> createState() => _RowCheckBoxState();
@@ -19,7 +24,6 @@ class _RowCheckBoxState extends State<RowCheckBox> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     check = widget.value;
   }

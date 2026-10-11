@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, deprecated_member_use
+
 import 'package:animate_do/animate_do.dart';
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
   DB db = DB();
   GlobalController gc = Get.find();
 
-  AsyncMemoizer _memoizer = AsyncMemoizer();
+  final AsyncMemoizer _memoizer = AsyncMemoizer();
 
   Future fetchData() async {
     return _memoizer.runOnce(() async {
@@ -42,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     gc.formData.clear();
     gc.dataController.values.map((e) => e.dispose());
@@ -224,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   );
                 } else {
-                  return Container(
+                  return SizedBox(
                     width: 50,
                     height: 50,
                     child: const CircularProgressIndicator(
@@ -251,10 +252,11 @@ class _LoginPageState extends State<LoginPage> {
     return true;
   }
 
-  login() async {
+  Future<void> login() async {
     UserController uc = UserController();
     GlobalController gc = Get.find();
-    UserModel? user = await uc.login(gc.formData['login_email'] ?? "", gc.formData['login_password'] ?? "");
+    UserModel? user = await uc.login(
+        gc.formData['login_email'] ?? "", gc.formData['login_password'] ?? "");
 
     if (user == null) {
       gc.dataController['login_password']!.text = "";

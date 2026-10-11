@@ -6,7 +6,14 @@ class UserModel {
   String? password;
   int? source;
 
-  UserModel({this.email, this.id, this.lastupdate, this.name, this.password, this.source});
+  UserModel({
+    this.email,
+    this.id,
+    this.lastupdate,
+    this.name,
+    this.password,
+    this.source,
+  });
 
   UserModel.fromJson(Map<String, dynamic> json) {
     email = json['email'];

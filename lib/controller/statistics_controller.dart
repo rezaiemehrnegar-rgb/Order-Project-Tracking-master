@@ -8,7 +8,8 @@ class Statistics {
   GlobalController gc = Get.find();
   DB db = DB();
 
-  Future<String> getSingleData(String dbName, String? select, String? where) async {
+  Future<String> getSingleData(
+      String dbName, String? select, String? where) async {
     select = select ?? "COUNT(id) as value";
     String query = "SELECT $select FROM $dbName";
     if (where != null) {
@@ -18,7 +19,8 @@ class Statistics {
     return data[0]["value"].toString();
   }
 
-  Future<Map<String, String>> getMonthlyData(String table, String column, String? year, String? select) async {
+  Future<Map<String, String>> getMonthlyData(
+      String table, String column, String? year, String? select) async {
     String currentYear = year ?? DateTime.now().year.toString();
     select = select ?? "COUNT(*)";
 

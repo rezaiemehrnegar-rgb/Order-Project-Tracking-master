@@ -11,7 +11,7 @@ import '../partial/record_head.dart';
 import '../partial/table_widget.dart';
 
 class Customers extends StatefulWidget {
-  const Customers({Key? key}) : super(key: key);
+  const Customers({super.key});
 
   @override
   State<Customers> createState() => _CustomersState();
@@ -50,7 +50,7 @@ class _CustomersState extends State<Customers> {
   //List<List<String?>> rows = [];
   List<List<Map<String, String?>>> rows = [];
 
-  _fetchData() async {
+  Future<Future<dynamic>> _fetchData() async {
     return _memoizer.runOnce(() async {
       return await getData();
     });
@@ -80,7 +80,8 @@ class _CustomersState extends State<Customers> {
       title: "customers".tr,
       headRightWidget: recordListHead(
         onPressed: () async {
-          await cc.deleteCustomerList(gc.checkList.map((e) => e.toString().split("_").last).toList());
+          await cc.deleteCustomerList(
+              gc.checkList.map((e) => e.toString().split("_").last).toList());
           await getData();
           Get.back();
 

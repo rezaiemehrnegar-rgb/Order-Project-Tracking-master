@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -34,13 +36,15 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     gc.formData.clear();
     gc.dataController.clear();
     if (widget.project != null) {
-      selectedFile =
-          widget.project?.filePath == null ? null : File(gc.documentDirectory.value + fileUploadFolderName + (widget.project?.filePath ?? ""));
+      selectedFile = widget.project?.filePath == null
+          ? null
+          : File(gc.documentDirectory.value +
+              fileUploadFolderName +
+              (widget.project?.filePath ?? ""));
       gc.formData.addAll({
         'title': widget.project!.title,
         'percentage': widget.project!.percentage,
@@ -135,16 +139,22 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                       padding: const EdgeInsets.all(10),
                       child: CustomDropDownMenu(
                         maxWidth: 0.25.sw,
-                        items: {for (var e in Status.values) e.index.toString(): e.toString().split(".").last.toLowerCase().tr},
+                        items: {
+                          for (var e in Status.values)
+                            e.index.toString():
+                                e.toString().split(".").last.toLowerCase().tr
+                        },
                         labelText: "status".tr,
                         selectKey: (widget.project?.status ?? 0).toString(),
                         onSelect: (key, value) {
                           gc.formData["status"] = key;
                         },
                         onInit: () {
-                          gc.formData["status"] = (widget.project?.status ?? 0).toString();
+                          gc.formData["status"] =
+                              (widget.project?.status ?? 0).toString();
                         },
-                        topPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+                        topPadding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 14),
                         boxDecoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
@@ -159,16 +169,22 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                       padding: const EdgeInsets.all(10),
                       child: CustomDropDownMenu(
                         maxWidth: 0.25.sw,
-                        items: {for (var e in Urgency.values) e.index.toString(): e.toString().split(".").last.toLowerCase().tr},
+                        items: {
+                          for (var e in Urgency.values)
+                            e.index.toString():
+                                e.toString().split(".").last.toLowerCase().tr
+                        },
                         labelText: "urgency".tr,
                         selectKey: (widget.project?.priority ?? 0).toString(),
                         onSelect: (key, value) {
                           gc.formData["priority"] = key;
                         },
                         onInit: () {
-                          gc.formData["priority"] = (widget.project?.priority ?? 0).toString();
+                          gc.formData["priority"] =
+                              (widget.project?.priority ?? 0).toString();
                         },
-                        topPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+                        topPadding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 14),
                         boxDecoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
@@ -220,7 +236,8 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                                               width: 1,
                                               color: greyColor,
                                             ),
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           padding: const EdgeInsets.all(5),
                                           child: InkWell(
@@ -231,7 +248,8 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                                                   child: SingleChildScrollView(
                                                     child: Column(
                                                       children: [
-                                                        Image.file(selectedFile!),
+                                                        Image.file(
+                                                            selectedFile!),
                                                       ],
                                                     ),
                                                   ),
@@ -263,7 +281,8 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                                         },
                                         child: Icon(
                                           Icons.delete_forever_outlined,
-                                          color: redColor.withOpacity(0.7),
+                                          color:
+                                              redColor.withValues(alpha: 0.7),
                                         ),
                                       ),
                                     ],
@@ -274,7 +293,8 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                       const SizedBox(height: 10),
                       InkWell(
                         onTap: () async {
-                          FilePickerResult? result = await FilePicker.platform.pickFiles(
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles(
                             type: FileType.custom,
                             allowedExtensions: allowedExtensions,
                           );
@@ -324,7 +344,8 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                                     const SizedBox(width: 8),
                                     Text(
                                       "file_select".tr,
-                                      style: GoogleFonts.quicksand(color: whiteColor),
+                                      style: GoogleFonts.quicksand(
+                                          color: whiteColor),
                                     ),
                                   ],
                                 ),
@@ -373,7 +394,7 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                         "status": gc.formData["status"],
                         "priority": gc.formData["priority"],
                         "detail": gc.formData["detail"],
-                        "file_path": await fileUpload(gc.formData["file_path"]),
+                        "file_path": fileUpload(gc.formData["file_path"]),
                         "source": 3,
                         "last_update": DateTime.now().toString()
                       };
@@ -388,12 +409,21 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                       }
 
                       if (result) {
-                        showSnackBar(context, "success".tr, "project_action_success".trParams({"action": action}), 1);
+                        showSnackBar(
+                            context,
+                            "success".tr,
+                            "project_action_success"
+                                .trParams({"action": action}),
+                            1);
                         gc.formData.clear();
                         SidebarController sc = Get.find();
                         sc.pageChange(const Projects());
                       } else {
-                        showSnackBar(context, "error".tr, "project_action_error".trParams({"action": action}), 0);
+                        showSnackBar(
+                            context,
+                            "error".tr,
+                            "project_action_error".trParams({"action": action}),
+                            0);
                       }
                     }
                   },
@@ -410,7 +440,8 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                       children: [
                         const Icon(Icons.save_outlined, color: Colors.white),
                         const SizedBox(width: 5),
-                        Text("save".tr, style: GoogleFonts.quicksand(color: Colors.white)),
+                        Text("save".tr,
+                            style: GoogleFonts.quicksand(color: Colors.white)),
                       ],
                     ),
                   ),

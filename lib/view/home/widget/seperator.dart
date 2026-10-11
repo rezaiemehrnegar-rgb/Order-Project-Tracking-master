@@ -11,7 +11,7 @@ Container seperator(String title) {
         Container(
           width: double.infinity,
           height: 2,
-          color: greyColor.withOpacity(0.2),
+          color: greyColor.withValues(alpha: 0.2),
           margin: const EdgeInsets.only(top: 8),
         ),
         Center(

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -15,7 +17,7 @@ import 'customers.dart';
 class CustomerCreate extends StatefulWidget {
   final CustomerModel? customer;
 
-  const CustomerCreate({Key? key, this.customer}) : super(key: key);
+  const CustomerCreate({super.key, this.customer});
 
   @override
   State<CustomerCreate> createState() => _CustomerCreateState();
@@ -26,7 +28,6 @@ class _CustomerCreateState extends State<CustomerCreate> {
   GlobalController gc = Get.find<GlobalController>();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     gc.formData.clear();
     gc.dataController.clear();
@@ -41,7 +42,6 @@ class _CustomerCreateState extends State<CustomerCreate> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     gc.formData.clear();
     gc.dataController.clear();
 

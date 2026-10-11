@@ -29,7 +29,8 @@ class _WindowIconState extends State<WindowIcon> {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: onHover ? whiteColor.withOpacity(0.15) : Colors.transparent,
+          color:
+              onHover ? whiteColor.withValues(alpha: 0.15) : Colors.transparent,
           borderRadius: BorderRadius.circular(5),
         ),
         margin: const EdgeInsets.only(right: 5),

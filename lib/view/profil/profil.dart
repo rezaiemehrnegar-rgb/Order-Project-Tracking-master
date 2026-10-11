@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -25,7 +27,6 @@ class _ProfilState extends State<Profil> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     gc.formData['name'] = widget.model.name;
     gc.formData['email'] = widget.model.email;
@@ -96,12 +97,14 @@ class _ProfilState extends State<Profil> {
                     bool result = await uc.updateProfile(formData);
 
                     if (result) {
-                      showSnackBar(context, "success".tr, "update_profile_success".tr, 1);
+                      showSnackBar(context, "success".tr,
+                          "update_profile_success".tr, 1);
                       gc.formData['password'] = "";
                       gc.dataController['password']?.text = "";
                       setState(() {});
                     } else {
-                      showSnackBar(context, "error".tr, "update_profile_error".tr, 0);
+                      showSnackBar(
+                          context, "error".tr, "update_profile_error".tr, 0);
                     }
                   }
                 },

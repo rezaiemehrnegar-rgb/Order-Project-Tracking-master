@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals
+
 class CustomerModel {
   int? cusId;
   String? lastupdate;
@@ -6,7 +8,14 @@ class CustomerModel {
   String? phone;
   int? source;
 
-  CustomerModel({this.cusId, this.lastupdate, this.mail, this.name, this.phone, this.source});
+  CustomerModel({
+    this.cusId,
+    this.lastupdate,
+    this.mail,
+    this.name,
+    this.phone,
+    this.source,
+  });
 
   CustomerModel.fromJson(Map json) {
     cusId = json['cus_id'];
@@ -18,13 +27,13 @@ class CustomerModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map();
-    data['cus_id'] = this.cusId;
-    data['lastupdate'] = this.lastupdate;
-    data['mail'] = this.mail;
-    data['name'] = this.name;
-    data['phone'] = this.phone;
-    data['source'] = this.source;
+    final Map<String, dynamic> data = Map();
+    data['cus_id'] = cusId;
+    data['lastupdate'] = lastupdate;
+    data['mail'] = mail;
+    data['name'] = name;
+    data['phone'] = phone;
+    data['source'] = source;
     return data;
   }
 }

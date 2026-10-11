@@ -47,11 +47,11 @@ Future<void> main() async {
     PermissionStatus status = await Permission.notification.request();
 
     if (status.isGranted) {
-      await OneSignal.shared.setAppId("7c14efd4-055b-42ef-bcd0-4fbda4f5b9e7");
+      await OneSignal.initialize("7c14efd4-055b-42ef-bcd0-4fbda4f5b9e7");
       if (Platform.isIOS) {
-        OneSignal.shared.setPermissionObserver((changes) async {
-          if (!changes.from.hasPrompted) {
-            await OneSignal.shared.addTrigger("prompt_ios", "true");
+        OneSignal.Notifications.addPermissionObserver((state) async {
+          if (!state) {
+            OneSignal.User.addAlias("prompt_ios", "true");
           }
         });
       }
@@ -64,7 +64,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,12 @@ class MyApp extends StatelessWidget {
           locale: lang == null ? Get.deviceLocale : Lang.getLang(lang!),
           fallbackLocale: Lang.def,
           scrollBehavior: const MaterialScrollBehavior().copyWith(
-            dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown},
+            dragDevices: {
+              PointerDeviceKind.mouse,
+              PointerDeviceKind.touch,
+              PointerDeviceKind.stylus,
+              PointerDeviceKind.unknown
+            },
           ),
           title: 'Order - Project Tracking',
           debugShowCheckedModeBanner: false,
@@ -119,7 +124,9 @@ class _MainHomePageState extends State<MainHomePage> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       if (snapshot.data == true) {
-                        return gc.loginCheck.value ? const HomePage() : const LoginPage();
+                        return gc.loginCheck.value
+                            ? const HomePage()
+                            : const LoginPage();
                       } else {
                         return SetupPage();
                       }
@@ -139,9 +146,10 @@ class _MainHomePageState extends State<MainHomePage> {
   Future<bool> process() async {
     controllerInjection();
     gc = Get.find<GlobalController>();
-    gc.documentDirectory.value = (await getApplicationDocumentsDirectory()).path.replaceAll("\\", "/");
+    gc.documentDirectory.value =
+        (await getApplicationDocumentsDirectory()).path.replaceAll("\\", "/");
 
-    if (!File(gc.documentDirectory.value + "/log.txt").existsSync()) {}
+    if (!File("${gc.documentDirectory.value}/log.txt").existsSync()) {}
 
     DB db = DB();
     String? setup = await db.getSettings("setup");

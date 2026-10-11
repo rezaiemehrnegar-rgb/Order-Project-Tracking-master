@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
@@ -38,7 +40,8 @@ void controllerInjection() {
 
 Center loading() => const Center(child: CircularProgressIndicator());
 
-hr({double yukseklik = 1, String tur = "normal", double bosluk = 10}) {
+Container hr(
+    {double yukseklik = 1, String tur = "normal", double bosluk = 10}) {
   if (tur == "normal") {
     return Container(
       margin: EdgeInsets.symmetric(vertical: bosluk),
@@ -194,7 +197,7 @@ String getUploadFilePath(String name) {
 void logWrite(String text) {
   String line = textRepeat("-", 50);
   GlobalController gc = Get.find();
-  String docDirPath = gc.documentDirectory.value + "/log.txt";
+  String docDirPath = "${gc.documentDirectory.value}/log.txt";
   File file = File(docDirPath);
-  file.writeAsStringSync(text + "\n", mode: FileMode.append);
+  file.writeAsStringSync("$text\n", mode: FileMode.append);
 }

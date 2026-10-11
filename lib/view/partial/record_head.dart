@@ -6,7 +6,10 @@ import '../../Const/const.dart';
 import '../../controller/state/global_controller.dart';
 import 'icon_text_button.dart';
 
-Widget recordListHead({required TextEditingController searchController, required Function() onPressed, bool filter = true}) {
+Widget recordListHead(
+    {required TextEditingController searchController,
+    required Function() onPressed,
+    bool filter = true}) {
   GlobalController gc = Get.find();
   return Wrap(
     crossAxisAlignment: WrapCrossAlignment.center,

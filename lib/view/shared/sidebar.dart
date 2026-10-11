@@ -15,7 +15,7 @@ import '../order/orders.dart';
 import '../partial/sidebar_menu_item.dart';
 
 class SideBar extends StatefulWidget {
-  const SideBar({Key? key}) : super(key: key);
+  const SideBar({super.key});
 
   @override
   State<SideBar> createState() => _SideBarState();
@@ -60,7 +60,8 @@ class _SideBarState extends State<SideBar> {
               child: Column(
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
                     child: Image.asset("${imagePath}logo.png"),
                   ),
                   SidebarLineItem(
@@ -71,7 +72,7 @@ class _SideBarState extends State<SideBar> {
                   Container(
                     margin: const EdgeInsets.only(top: 10, right: 5, left: 5),
                     height: 1,
-                    color: Colors.white.withOpacity(0.1),
+                    color: Colors.white.withValues(alpha: 0.1),
                   ),
                   SidebarMenuItem(
                     title: "order".tr,
@@ -137,7 +138,8 @@ class _SideBarState extends State<SideBar> {
                   ),
                   Container(
                     margin: EdgeInsets.only(right: 15, left: 15, top: 10),
-                    child: Divider(color: Colors.white.withOpacity(0.1), height: 1),
+                    child: Divider(
+                        color: Colors.white.withValues(alpha: 0.1), height: 1),
                   ),
                   SidebarLineItem(
                     id: "logout",

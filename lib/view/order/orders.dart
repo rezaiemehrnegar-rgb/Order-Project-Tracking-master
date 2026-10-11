@@ -12,7 +12,7 @@ import '../partial/record_head.dart';
 import '../partial/table_widget.dart';
 
 class Orders extends StatefulWidget {
-  const Orders({Key? key}) : super(key: key);
+  const Orders({super.key});
 
   @override
   State<Orders> createState() => _OrdersState();
@@ -42,7 +42,7 @@ class _OrdersState extends State<Orders> {
     {'data': 'actions'.tr, 'fixed': '180', 'action': '1'},
   ];
 
-  _fetchData() async {
+  Future<Future<dynamic>> _fetchData() async {
     return _memoizer.runOnce(() async {
       return await getData();
     });
@@ -58,7 +58,10 @@ class _OrdersState extends State<Orders> {
           {'data': rawList[i].title},
           {'data': rawList[i].customerData?.name ?? ""},
           {'data': rawList[i].customerData?.phone ?? ""},
-          {'data': Urgency.values[rawList[i].urgency ?? 0].name.toLowerCase().tr},
+          {
+            'data':
+                Urgency.values[rawList[i].urgency ?? 0].name.toLowerCase().tr
+          },
           {'data': Status.values[rawList[i].status ?? 0].name.toLowerCase().tr},
           {'data': rawList[i].percentage.toString(), 'type': 'progress'},
           {'data': rawList[i].price.toString()},
@@ -73,7 +76,6 @@ class _OrdersState extends State<Orders> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -83,7 +85,8 @@ class _OrdersState extends State<Orders> {
       title: "orders".tr,
       headRightWidget: recordListHead(
         onPressed: () async {
-          await oc.deleteOrderList(gc.checkList.map((e) => e.toString().split("_").last).toList());
+          await oc.deleteOrderList(
+              gc.checkList.map((e) => e.toString().split("_").last).toList());
           await getData();
           Get.back();
 

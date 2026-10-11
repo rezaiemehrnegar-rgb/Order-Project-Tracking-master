@@ -1,6 +1,8 @@
+// ignore_for_file: unrelated_type_equality_checks, strict_top_level_inference
+
 import 'package:animate_do/animate_do.dart';
 import 'package:data_table_2/data_table_2.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:orderproject/view/partial/dropdown.dart';
@@ -47,7 +49,6 @@ class _TableWidgetState extends State<TableWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     updateData();
   }
@@ -66,7 +67,10 @@ class _TableWidgetState extends State<TableWidget> {
       resultRows = [];
       for (List<Map<String, String?>> row in rawRows) {
         for (Map<String, String?> cell in row) {
-          if (cell['data'].toString().toLowerCase().contains(widget.controller.text.toLowerCase())) {
+          if (cell['data']
+              .toString()
+              .toLowerCase()
+              .contains(widget.controller.text.toLowerCase())) {
             resultRows.add(row);
             break;
           }
@@ -85,7 +89,8 @@ class _TableWidgetState extends State<TableWidget> {
       children: [
         Obx(() {
           if (gc.filter.value) {
-            return ZoomIn(duration: Duration(milliseconds: 500), child: filterRowBuild());
+            return ZoomIn(
+                duration: Duration(milliseconds: 500), child: filterRowBuild());
           }
           return SizedBox();
         }),
@@ -93,7 +98,8 @@ class _TableWidgetState extends State<TableWidget> {
           child: DataTable2(
             columnSpacing: 12,
             horizontalMargin: 12,
-            minWidth: isMobileSize() ? Get.width * 2.5 : widget.largeScreenMaxSize,
+            minWidth:
+                isMobileSize() ? Get.width * 2.5 : widget.largeScreenMaxSize,
             dataRowHeight: 50,
             sortArrowIcon: Icons.arrow_downward,
             sortAscending: _isSortAscending,
@@ -101,7 +107,7 @@ class _TableWidgetState extends State<TableWidget> {
             border: TableBorder.all(),
             isHorizontalScrollBarVisible: true,
             isVerticalScrollBarVisible: true,
-            headingRowColor: MaterialStateColor.resolveWith((states) {
+            headingRowColor: WidgetStateColor.resolveWith((states) {
               return primaryColor;
             }),
             headingTextStyle: const TextStyle(
@@ -158,8 +164,13 @@ class _TableWidgetState extends State<TableWidget> {
   List<DataCell> cellGenerate(List<Map<String, String?>> tmpRow) {
     List<Map<String, String?>> row = List.from(tmpRow);
 
-    List<DataCell> list = List.generate(row.length + 2, (index) => DataCell(Text('')));
-    int id = int.tryParse(row.where((element) => element['id'] != null).first['data'].toString()) ?? 0;
+    List<DataCell> list =
+        List.generate(row.length + 2, (index) => DataCell(Text('')));
+    int id = int.tryParse(row
+            .where((element) => element['id'] != null)
+            .first['data']
+            .toString()) ??
+        0;
     int actionIndex = columns.indexWhere((e) => e['action'] == '1');
     row.insert(0, {'data': 'ch', 'fixed': ''});
     row.insert(actionIndex, {'data': 'ac', 'fixed': ''});
@@ -260,7 +271,9 @@ class _TableWidgetState extends State<TableWidget> {
     setState(() {
       _isSortAscending = ascending;
       _sortIndex = columnIndex;
-      resultRows.sort((a, b) => a[columnIndex]['data'].toString().compareTo(b[columnIndex]['data'].toString()));
+      resultRows.sort((a, b) => a[columnIndex]['data']
+          .toString()
+          .compareTo(b[columnIndex]['data'].toString()));
       if (!ascending) {
         resultRows = resultRows.reversed.toList();
       }
@@ -305,7 +318,8 @@ class _TableWidgetState extends State<TableWidget> {
           'title': element['data'],
           'index': colIndex,
           'filter': element['filter'].toString(),
-          'data': Map.fromIterable(rawRows.map((e) => e[colIndex]['data']).toList()),
+          'data': Map.fromIterable(
+              rawRows.map((e) => e[colIndex]['data']).toList()),
         });
       }
     }
@@ -342,7 +356,10 @@ class _TableWidgetState extends State<TableWidget> {
                     return;
                   }
 
-                  resultRows = rawRows.where((row) => row[filterRow[i]['index']]['data'] == value).toList();
+                  resultRows = rawRows
+                      .where(
+                          (row) => row[filterRow[i]['index']]['data'] == value)
+                      .toList();
                 });
               },
             ),

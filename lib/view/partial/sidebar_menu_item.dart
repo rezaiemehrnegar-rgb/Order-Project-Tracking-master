@@ -15,12 +15,12 @@ class SidebarMenuItem extends StatefulWidget {
   final List<SidebarMenuSubItem> items;
 
   const SidebarMenuItem({
-    Key? key,
+    super.key,
     required this.id,
     required this.title,
     required this.icon,
     required this.items,
-  }) : super(key: key);
+  });
 
   //const SidebarMenu({Key? key}) : super(key: key);
 
@@ -31,7 +31,7 @@ class SidebarMenuItem extends StatefulWidget {
 class _SidebarMenuItemState extends State<SidebarMenuItem> {
   SidebarController sc = Get.find();
   bool isOpen = false;
-  Color color = Colors.white.withOpacity(0.8);
+  Color color = Colors.white.withValues(alpha: 0.8);
   double iconSize = 20;
   double textSize = 17;
 
@@ -51,7 +51,9 @@ class _SidebarMenuItemState extends State<SidebarMenuItem> {
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: isMobileSize() ? MainAxisAlignment.center : MainAxisAlignment.start,
+                    mainAxisAlignment: isMobileSize()
+                        ? MainAxisAlignment.center
+                        : MainAxisAlignment.start,
                     children: [
                       Container(
                         margin: EdgeInsets.only(right: isMobileSize() ? 0 : 10),
@@ -75,7 +77,9 @@ class _SidebarMenuItemState extends State<SidebarMenuItem> {
                         Container(
                           alignment: Alignment.centerRight,
                           child: Icon(
-                            isOpen ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_right,
+                            isOpen
+                                ? Icons.keyboard_arrow_down
+                                : Icons.keyboard_arrow_right,
                             color: color,
                             size: iconSize + 2,
                           ),
@@ -85,14 +89,16 @@ class _SidebarMenuItemState extends State<SidebarMenuItem> {
                   Container(
                     margin: const EdgeInsets.only(top: 10),
                     height: 1,
-                    color: color.withOpacity(0.1),
+                    color: color.withValues(alpha: 0.1),
                   ),
                 ],
               ),
             ),
             AnimatedCrossFade(
               duration: const Duration(milliseconds: 300),
-              crossFadeState: !isOpen ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+              crossFadeState: !isOpen
+                  ? CrossFadeState.showSecond
+                  : CrossFadeState.showFirst,
               firstChild: DefaultTextStyle(
                 style: GoogleFonts.quicksand(
                   color: Colors.grey.shade600,
@@ -172,11 +178,11 @@ class SidebarLineItem extends StatefulWidget {
   final IconData icon;
 
   const SidebarLineItem({
-    Key? key,
+    super.key,
     required this.id,
     required this.title,
     required this.icon,
-  }) : super(key: key);
+  });
 
   @override
   State<SidebarLineItem> createState() => _SidebarLineItemState();
@@ -187,7 +193,7 @@ class _SidebarLineItemState extends State<SidebarLineItem> {
 
   bool isOpen = false;
 
-  Color color = Colors.white.withOpacity(0.8);
+  Color color = Colors.white.withValues(alpha: 0.8);
 
   double iconSize = 20;
 
@@ -210,7 +216,9 @@ class _SidebarLineItemState extends State<SidebarLineItem> {
           }
         },
         child: Row(
-          mainAxisAlignment: isMobileSize() ? MainAxisAlignment.center : MainAxisAlignment.start,
+          mainAxisAlignment: isMobileSize()
+              ? MainAxisAlignment.center
+              : MainAxisAlignment.start,
           children: [
             Container(
               margin: EdgeInsets.only(right: isMobileSize() ? 0 : 10),
@@ -234,7 +242,9 @@ class _SidebarLineItemState extends State<SidebarLineItem> {
               Container(
                 alignment: Alignment.centerRight,
                 child: Icon(
-                  isOpen ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_right,
+                  isOpen
+                      ? Icons.keyboard_arrow_down
+                      : Icons.keyboard_arrow_right,
                   color: color,
                   size: iconSize + 2,
                 ),

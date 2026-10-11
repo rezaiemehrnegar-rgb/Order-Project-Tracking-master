@@ -10,7 +10,7 @@ class Lang extends Translations {
   static final def = en;
   static final languages = [en, tr, de, hi, zh];
 
-  static getLang(String lang) {
+  static Locale getLang(String lang) {
     switch (lang) {
       case "en":
         return Lang.en;
@@ -73,7 +73,8 @@ class Lang extends Translations {
           "status": "Status",
           "percent": "Percent",
           "percent_desc": "Completion percentage",
-          "project_percent_not_empty": "Project completion percentage cannot be empty",
+          "project_percent_not_empty":
+              "Project completion percentage cannot be empty",
           "start_date_not_empty": "Start date cannot be empty",
           "end_date_not_empty": "End date cannot be empty",
           "urgency_not_empty": "Urgency cannot be empty",
@@ -164,7 +165,8 @@ class Lang extends Translations {
           "login_error": "Giriş Başarısız",
           "login_error_msg": "E-posta veya şifre yanlış",
           "setup": "Kurulum",
-          "setup_message": "Bu ekran uygulamanın ilk kurulum alanıdır ve sadece bir kez gösterilir.",
+          "setup_message":
+              "Bu ekran uygulamanın ilk kurulum alanıdır ve sadece bir kez gösterilir.",
           "first_mail": "Giriş E-postası",
           "first_password": "Giriş Şifresi",
           "first_mail_error": "Lütfen geçerli bir e-posta adresi girin",
@@ -181,7 +183,8 @@ class Lang extends Translations {
           "status": "Durum",
           "percent": "Yüzde",
           "percent_desc": "Tamamlanma yüzdesi",
-          "project_percent_not_empty": "Proje tamamlanma yüzdesi boş bırakılamaz",
+          "project_percent_not_empty":
+              "Proje tamamlanma yüzdesi boş bırakılamaz",
           "start_date_not_empty": "Başlangıç tarihi boş bırakılamaz",
           "end_date_not_empty": "Bitiş tarihi boş bırakılamaz",
           "urgency_not_empty": "Aciliyet boş bırakılamaz",
@@ -287,7 +290,8 @@ class Lang extends Translations {
           "first_mail": "Anmeldemail",
           "first_password": "Anmeldpasswort",
           "first_mail_error": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
-          "first_password_error": "Passwort muss mindestens 3 Zeichen lang sein",
+          "first_password_error":
+              "Passwort muss mindestens 3 Zeichen lang sein",
           "save": "Speichern",
           "success": "Erfolg",
           "error": "Fehler",
@@ -300,7 +304,8 @@ class Lang extends Translations {
           "status": "Status",
           "percent": "Prozent",
           "percent_desc": "Fertigstellungsgrad",
-          "project_percent_not_empty": "Projektabschlussprozentsatz darf nicht leer sein",
+          "project_percent_not_empty":
+              "Projektabschlussprozentsatz darf nicht leer sein",
           "start_date_not_empty": "Startdatum darf nicht leer sein",
           "end_date_not_empty": "Enddatum darf nicht leer sein",
           "urgency_not_empty": "Dringlichkeit darf nicht leer sein",
@@ -336,7 +341,8 @@ class Lang extends Translations {
           "updated": "aktualisiert",
           "created": "erstellt",
           "create_order": "Bestellung erstellen/bearbeiten",
-          "order_action_success": "Bestellung @action erfolgreich abgeschlossen",
+          "order_action_success":
+              "Bestellung @action erfolgreich abgeschlossen",
           "order_action_error": "Bestellung konnte nicht @action",
           "customer_action_success": "Kunde @action erfolgreich abgeschlossen",
           "customer_action_error": "Kunde konnte nicht @action",
@@ -390,7 +396,8 @@ class Lang extends Translations {
           "login_error": "लॉगिन विफल",
           "login_error_msg": "ईमेल या पासवर्ड गलत है",
           "setup": "सेटअप",
-          "setup_message": "यह स्क्रीन एप्लिकेशन के पहले स्थापना क्षेत्र है और केवल एक बार दिखाया जाता है।",
+          "setup_message":
+              "यह स्क्रीन एप्लिकेशन के पहले स्थापना क्षेत्र है और केवल एक बार दिखाया जाता है।",
           "first_mail": "लॉगिन मेल",
           "first_password": "लॉगिन पासवर्ड",
           "first_mail_error": "कृपया एक वैध ईमेल पता दर्ज करें",
@@ -407,7 +414,8 @@ class Lang extends Translations {
           "status": "स्थिति",
           "percent": "प्रतिशत",
           "percent_desc": "पूर्णता प्रतिशत",
-          "project_percent_not_empty": "प्रोजेक्ट पूर्णता प्रतिशत खाली नहीं हो सकता",
+          "project_percent_not_empty":
+              "प्रोजेक्ट पूर्णता प्रतिशत खाली नहीं हो सकता",
           "start_date_not_empty": "प्रारंभ तिथि खाली नहीं हो सकती",
           "end_date_not_empty": "समाप्ति तिथि खाली नहीं हो सकती",
           "urgency_not_empty": "तत्कालता खाली नहीं हो सकती",

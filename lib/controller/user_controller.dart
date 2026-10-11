@@ -14,8 +14,9 @@ class UserController {
   }
 
   Future<UserModel?> login(String mail, String pass) async {
-    var rows = await db.select("SELECT * FROM users WHERE email = '$mail' AND password = '" + db.hashPassword(pass) + "'");
-    if (rows.length == 0) {
+    var rows = await db.select(
+        "SELECT * FROM users WHERE email = '$mail' AND password = '${db.hashPassword(pass)}'");
+    if (rows.isEmpty) {
       return null;
     }
     return UserModel.fromJson(rows[0]);

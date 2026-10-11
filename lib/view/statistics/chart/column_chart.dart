@@ -39,7 +39,8 @@ class _ColumnChartState extends State<ColumnChart> {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxWidth: isMobile() ? Get.width : (Get.width > 800 ? 0.35.sw : Get.width),
+        maxWidth:
+            isMobile() ? Get.width : (Get.width > 800 ? 0.35.sw : Get.width),
         minWidth: 200,
       ),
       margin: const EdgeInsets.only(top: 15, right: 15, left: 15),
@@ -48,7 +49,7 @@ class _ColumnChartState extends State<ColumnChart> {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: greyColor.withOpacity(0.5),
+            color: greyColor.withValues(alpha: 0.5),
             offset: const Offset(0, 3),
             blurRadius: 3,
           ),
@@ -80,7 +81,7 @@ class _ColumnChartState extends State<ColumnChart> {
               ),
               primaryYAxis: NumericAxis(),
               tooltipBehavior: _tooltip,
-              series: <ChartSeries<ChartData, String>>[
+              series: <CartesianSeries<ChartData, String>>[
                 ColumnSeries<ChartData, String>(
                   dataSource: data,
                   xValueMapper: (ChartData data, _) => data.x,

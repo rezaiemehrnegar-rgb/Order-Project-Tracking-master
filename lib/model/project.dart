@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals
+
 import 'package:orderproject/helper/string_helper.dart';
 
 class ProjectModel {
@@ -14,19 +16,20 @@ class ProjectModel {
   int? status;
   String? title;
 
-  ProjectModel(
-      {this.createdDate,
-      this.detail,
-      this.endDate,
-      this.filePath,
-      this.id,
-      this.lastUpdate,
-      this.percentage,
-      this.priority,
-      this.source,
-      this.startDate,
-      this.status,
-      this.title});
+  ProjectModel({
+    this.createdDate,
+    this.detail,
+    this.endDate,
+    this.filePath,
+    this.id,
+    this.lastUpdate,
+    this.percentage,
+    this.priority,
+    this.source,
+    this.startDate,
+    this.status,
+    this.title,
+  });
 
   ProjectModel.fromJson(Map json) {
     createdDate = json['created_date'];
@@ -44,19 +47,19 @@ class ProjectModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map();
-    data['created_date'] = this.createdDate;
-    data['detail'] = this.detail;
-    data['end_date'] = this.endDate;
-    data['file_path'] = this.filePath;
-    data['id'] = this.id;
-    data['last_update'] = this.lastUpdate;
-    data['percentage'] = this.percentage;
-    data['priority'] = this.priority;
-    data['source'] = this.source;
-    data['start_date'] = this.startDate;
-    data['status'] = this.status;
-    data['title'] = this.title;
+    final Map<String, dynamic> data = Map();
+    data['created_date'] = createdDate;
+    data['detail'] = detail;
+    data['end_date'] = endDate;
+    data['file_path'] = filePath;
+    data['id'] = id;
+    data['last_update'] = lastUpdate;
+    data['percentage'] = percentage;
+    data['priority'] = priority;
+    data['source'] = source;
+    data['start_date'] = startDate;
+    data['status'] = status;
+    data['title'] = title;
     return data;
   }
 }

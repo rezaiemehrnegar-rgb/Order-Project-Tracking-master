@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, deprecated_member_use
+
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -6,14 +8,15 @@ import 'package:sqlite3/sqlite3.dart';
 
 class OtherDB {
   Future<Database> init() async {
-    String path = (await getApplicationSupportDirectory()).path + "/db.db";
+    String path = "${(await getApplicationSupportDirectory()).path}/db.db";
     if (!File(path).existsSync()) {
       ByteData data = await rootBundle.load("assets/db/db.db");
-      List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      List<int> bytes =
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(path).writeAsBytes(bytes, flush: true);
     }
 
-    Database db = await sqlite3.open(path);
+    Database db = sqlite3.open(path);
     return db;
   }
 
@@ -33,13 +36,8 @@ class OtherDB {
     try {
       Database db = await init();
       db
-          .prepare("INSERT INTO $dbName (" +
-              data.keys.toList().join(", ") +
-              ") VALUES (" +
-              data.values.map((e) => "?").toList().join(", ")
-              //textRepeat("?,", data.keys.length)
-              +
-              ") ")
+          .prepare(
+              "INSERT INTO $dbName (${data.keys.toList().join(", ")}) VALUES (${data.values.map((e) => "?").toList().join(", ")}) ")
           .execute(data.values.toList());
 
       db.dispose();
@@ -51,10 +49,14 @@ class OtherDB {
     }
   }
 
-  Future<bool> updateData(String dbName, Map<String, dynamic> data, String where) async {
+  Future<bool> updateData(
+      String dbName, Map<String, dynamic> data, String where) async {
     try {
       Database db = await init();
-      db.prepare("UPDATE $dbName SET " + data.keys.map((e) => "$e = ?").toList().join(", ") + " WHERE $where").execute(data.values.toList());
+      db
+          .prepare(
+              "UPDATE $dbName SET ${data.keys.map((e) => "$e = ?").toList().join(", ")} WHERE $where")
+          .execute(data.values.toList());
       db.dispose();
       return true;
     } catch (e) {
@@ -63,7 +65,8 @@ class OtherDB {
     }
   }
 
-  Future<bool> delete(String dbName, List<String> colNames, List<dynamic> variables) async {
+  Future<bool> delete(
+      String dbName, List<String> colNames, List<dynamic> variables) async {
     try {
       Database db = await init();
       String where = colNames.map((e) => "$e = ?").toList().join(" AND ");

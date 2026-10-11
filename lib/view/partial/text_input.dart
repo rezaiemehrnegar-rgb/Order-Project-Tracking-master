@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,10 +45,10 @@ class _CustomTextInputState extends State<CustomTextInput> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (gc.dataController[widget.name] == null) {
-      gc.dataController[widget.name] = TextEditingController(text: gc.formData[widget.name] ?? "");
+      gc.dataController[widget.name] =
+          TextEditingController(text: gc.formData[widget.name] ?? "");
     }
   }
 
@@ -59,7 +61,8 @@ class _CustomTextInputState extends State<CustomTextInput> {
 
           FocusScopeNode currentFocus = FocusScope.of(context);
 
-          if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
             FocusManager.instance.primaryFocus!.unfocus();
           }
           keyboardHidden();
@@ -78,7 +81,7 @@ class _CustomTextInputState extends State<CustomTextInput> {
                     surface: primaryColor,
                     onSurface: Colors.black,
                   ),
-                  dialogBackgroundColor: Colors.white,
+                  dialogTheme: DialogThemeData(backgroundColor: Colors.white),
                 ),
                 child: child!,
               );
@@ -86,12 +89,16 @@ class _CustomTextInputState extends State<CustomTextInput> {
           );
 
           if (pickedDate != null) {
-            gc.formData[widget.name] = DateFormat().addPattern("dd.MM.yyyy").format(pickedDate).toString();
+            gc.formData[widget.name] = DateFormat()
+                .addPattern("dd.MM.yyyy")
+                .format(pickedDate)
+                .toString();
             gc.dataController[widget.name]!.text = gc.formData[widget.name]!;
 
             FocusScopeNode currentFocus = FocusScope.of(context);
 
-            if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+            if (!currentFocus.hasPrimaryFocus &&
+                currentFocus.focusedChild != null) {
               FocusManager.instance.primaryFocus!.unfocus();
             }
           }
@@ -100,7 +107,8 @@ class _CustomTextInputState extends State<CustomTextInput> {
         }
       },
       child: Container(
-        constraints: BoxConstraints(maxWidth: isMobileSize() ? double.infinity : 0.25.sw),
+        constraints: BoxConstraints(
+            maxWidth: isMobileSize() ? double.infinity : 0.25.sw),
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Stack(
           children: [
@@ -122,15 +130,17 @@ class _CustomTextInputState extends State<CustomTextInput> {
                     focusNode: focusNode,
                     keyboardType: widget.keyboardType,
                     inputFormatters: [
-                      if (widget.keyboardType == TextInputType.number) FilteringTextInputFormatter.digitsOnly,
+                      if (widget.keyboardType == TextInputType.number)
+                        FilteringTextInputFormatter.digitsOnly,
                     ],
-                    controller: gc.dataController[widget.name], //TextEditingController(text: gc.formData[widget.name]),
+                    controller: gc.dataController[widget
+                        .name], //TextEditingController(text: gc.formData[widget.name]),
                     decoration: InputDecoration(
                       hintText: widget.hintText ?? widget.labelText,
                       border: InputBorder.none,
                       isDense: true,
                       hintStyle: GoogleFonts.quicksand(
-                        color: Colors.grey.withOpacity(0.7),
+                        color: Colors.grey.withValues(alpha: 0.7),
                         fontSize: 14,
                       ),
                       //hintText: widget.hintText,

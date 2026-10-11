@@ -30,15 +30,17 @@ class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxWidth: isMobileSize() ? double.infinity : 0.90.sw),
+      constraints:
+          BoxConstraints(maxWidth: isMobileSize() ? double.infinity : 0.90.sw),
       padding: const EdgeInsets.all(15),
-      margin: EdgeInsets.symmetric(vertical: 15, horizontal: isMobileSize() ? 0 : 15),
+      margin: EdgeInsets.symmetric(
+          vertical: 15, horizontal: isMobileSize() ? 0 : 15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.grey.withValues(alpha: 0.5),
             blurRadius: 5,
             offset: const Offset(0, 3),
           ),
@@ -62,7 +64,10 @@ class _CustomCardState extends State<CustomCard> {
               ),
               Expanded(
                   child: Container(
-                      alignment: Alignment.centerRight, child: Obx(() => sc.selectedMenu.value == "" ? widget.headRightWidget : Container()))),
+                      alignment: Alignment.centerRight,
+                      child: Obx(() => sc.selectedMenu.value == ""
+                          ? widget.headRightWidget
+                          : Container()))),
             ],
           ),
           hr(),

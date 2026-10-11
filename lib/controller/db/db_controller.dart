@@ -7,8 +7,8 @@ import 'package:orderproject/controller/db/other_platform_db.dart';
 import '../../const/ext.dart';
 
 class DB {
-  MobileDB _mobileDB = MobileDB();
-  OtherDB _otherDB = OtherDB();
+  final MobileDB _mobileDB = MobileDB();
+  final OtherDB _otherDB = OtherDB();
 
   Future<List<Map<String, Object?>>> select(String sql) async {
     if (isMobile(mac: true)) {
@@ -26,7 +26,8 @@ class DB {
     }
   }
 
-  Future<bool> updateData(String dbName, Map<String, dynamic> data, String where) async {
+  Future<bool> updateData(
+      String dbName, Map<String, dynamic> data, String where) async {
     if (isMobile(mac: true)) {
       return await _mobileDB.updateData(dbName, data, where);
     } else {
@@ -34,7 +35,8 @@ class DB {
     }
   }
 
-  Future<bool> delete(String dbName, List<String> colNames, List<dynamic> variables) async {
+  Future<bool> delete(
+      String dbName, List<String> colNames, List<dynamic> variables) async {
     if (isMobile(mac: true)) {
       return await _mobileDB.delete(dbName, colNames, variables);
     } else {
@@ -96,7 +98,9 @@ class DB {
     }
   }
 
-  hashPassword(String password) {
-    return sha256.convert(utf8.encode(md5.convert(utf8.encode(password)).toString())).toString();
+  String hashPassword(String password) {
+    return sha256
+        .convert(utf8.encode(md5.convert(utf8.encode(password)).toString()))
+        .toString();
   }
 }

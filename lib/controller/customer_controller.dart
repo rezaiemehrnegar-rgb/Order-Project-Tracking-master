@@ -33,7 +33,8 @@ class CustomerController {
       "lastupdate": DateTime.now().toString(),
     };
 
-    return await db.updateData("customer", data, "cus_id = ${formData["customer_id"]}");
+    return await db.updateData(
+        "customer", data, "cus_id = ${formData["customer_id"]}");
   }
 
   Future<CustomerModel> select(int id) async {
@@ -45,7 +46,9 @@ class CustomerController {
     return await db.delete("customer", ["cus_id"], [id]);
   }
 
-  deleteCustomerList(List<String> list) async {
-    return await db.select("DELETE FROM customer WHERE cus_id IN (${list.join(",")})");
+  Future<List<Map<String, Object?>>> deleteCustomerList(
+      List<String> list) async {
+    return await db
+        .select("DELETE FROM customer WHERE cus_id IN (${list.join(",")})");
   }
 }

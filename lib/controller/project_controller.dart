@@ -27,7 +27,9 @@ class ProjectController {
     return await db.delete("project", ["id"], [id]);
   }
 
-  deleteProjectList(List<String> list) async {
-    return await db.select("DELETE FROM project WHERE id IN (${list.join(",")})");
+  Future<List<Map<String, Object?>>> deleteProjectList(
+      List<String> list) async {
+    return await db
+        .select("DELETE FROM project WHERE id IN (${list.join(",")})");
   }
 }

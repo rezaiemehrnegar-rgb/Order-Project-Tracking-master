@@ -21,7 +21,7 @@ InkWell iconTextButton({
         color: color,
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.5),
+            color: color.withValues(alpha: 0.5),
             spreadRadius: 0,
             blurRadius: 2,
             offset: const Offset(0, 2),
