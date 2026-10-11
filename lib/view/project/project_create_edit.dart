@@ -293,15 +293,14 @@ class _ProjectCreateEditState extends State<ProjectCreateEdit> {
                       const SizedBox(height: 10),
                       InkWell(
                         onTap: () async {
-                          FilePickerResult? result =
-                              await FilePicker.platform.pickFiles(
+                          final files = await FilePicker.pickFiles(
                             type: FileType.custom,
                             allowedExtensions: allowedExtensions,
                           );
 
-                          if (result != null) {
-                            selectedFile = File(result.files.single.path ?? "");
-                          } else {}
+                          if (files.isNotEmpty && files.single.path != null) {
+                            selectedFile = File(files.single.path!);
+                          }
 
                           gc.update(["project_file_list"]);
                         },
