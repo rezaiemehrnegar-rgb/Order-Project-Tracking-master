@@ -1,5 +1,4 @@
 
-
 ![Aksoyhlc Order Project Tracking](https://aksoyhlc.net/yonetim/dosyalar/Aksoyhlc-Order-Project-Tracking.png)
 
 |  ![Aksoyhlc Order Project Tracking](https://aksoyhlc.net/yonetim/dosyalar/Order-Project-Tracking-5.png)|![Aksoyhlc Order Project Tracking](https://aksoyhlc.net/yonetim/dosyalar/Order%20Project%20Tracking-1.webp)  | ![Aksoyhlc Order Project Tracking](https://aksoyhlc.net/yonetim/dosyalar/Order%20Project%20Tracking-2.webp) |
@@ -19,7 +18,6 @@ This version works only on the local device without internet, it is not synchron
 When you open the application for the first time, the setup screen opens and this screen is shown only once, you are asked for an e-mail and password. After entering the information you want here, the login page opens. You can log in with the information you wrote on the setup page, and if you want to change this information later, you can change it from the profile page.
 
 The application uses sqlite as storage. You can view and edit the assets/db/db.db file by opening it with the sqlite browser.
-
 
 ## Download Demo Version
 
