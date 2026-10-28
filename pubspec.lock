@@ -125,10 +125,10 @@ packages:
     dependency: "direct main"
     description:
       name: crypto
-      sha256: c8ea0233063ba03258fbcf2ca4d6dadfefe14f02fab57702265467a19f27fadf
+      sha256: e3626ae6270383c9e3a549f34c9e4cd26c09ae6a9adaab2bf4737a00340efdc4
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.7"
+    version: "3.0.8"
   cupertino_ui:
     dependency: transitive
     description:
@@ -189,18 +189,18 @@ packages:
     dependency: "direct main"
     description:
       name: file_picker
-      sha256: "98c0b156b6380ba55bc767a14e2e6b3feb246e713ad40092424596fa79005bea"
+      sha256: e67f1bcbef00f8b28f3b6ce09a1f0d2d9de37cf1e1e7e73b70df7a20d3eee8be
       url: "https://pub.dev"
     source: hosted
-    version: "13.1.0"
+    version: "13.3.0"
   file_picker_darwin:
     dependency: transitive
     description:
       name: file_picker_darwin
-      sha256: aa8f8f44e4d26202f39c5f1c27c4f0fd101f54a98fed22e24dd5ae7871e76496
+      sha256: "13e731433fb3e59c1aff5a1197e41c5c5f930fad16342d101579086271a70d7b"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.4"
+    version: "2.4.0"
   file_picker_linux:
     dependency: transitive
     description:
@@ -213,10 +213,10 @@ packages:
     dependency: transitive
     description:
       name: file_picker_platform_interface
-      sha256: bbdc085a6f168e63f147e9ce8988f79fa0800a58e7f25a48f762c60837107ba5
+      sha256: "336e7168306834a2b68e6168ed768e00d3fabeac23154d5793e277ca9f97cf20"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.0"
+    version: "4.2.0"
   file_picker_web:
     dependency: transitive
     description:
@@ -425,10 +425,10 @@ packages:
     dependency: "direct main"
     description:
       name: material_ui
-      sha256: "98ab9eda579ecae623e4b376c603035c5def78ce706f735f30bd632af5814695"
+      sha256: e4031746f96c8316864d9b92bce375f1320a36ed56e166307e1e1bda9d90b4ab
       url: "https://pub.dev"
     source: hosted
-    version: "1.6.0"
+    version: "1.8.0"
   meta:
     dependency: transitive
     description:
@@ -457,10 +457,10 @@ packages:
     dependency: "direct main"
     description:
       name: onesignal_flutter
-      sha256: "93f33118978a68ab3ee4df936e71fc08cda0a2cce56cc89d9a32bbd9692d71ca"
+      sha256: "5d22b8cf451ebbc6ea0b1753851dc0f6d9fae15da97d902bc6c6412b62a26065"
       url: "https://pub.dev"
     source: hosted
-    version: "5.7.0"
+    version: "5.7.1"
   package_config:
     dependency: transitive
     description:
@@ -694,18 +694,18 @@ packages:
     dependency: "direct main"
     description:
       name: sqflite
-      sha256: "7419d02d128023f38586481c81e14e5692167f75b7f411a914b1eb50d28c010e"
+      sha256: "21a9750de2deb464946e9f41c7ddf176e25553618afdfc774868cd454990c06a"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.4+1"
+    version: "2.4.5"
   sqflite_android:
     dependency: transitive
     description:
       name: sqflite_android
-      sha256: "805b27c6fa10d8883253795e644818fbd5c87ce665459db84fbe71326cbb5421"
+      sha256: "3986f4cbdde19ca538aae877981c5a53400dcc4601499df18e7ed9e848a0bdd4"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.4"
+    version: "2.4.5"
   sqflite_common:
     dependency: transitive
     description:
@@ -726,18 +726,18 @@ packages:
     dependency: transitive
     description:
       name: sqflite_platform_interface
-      sha256: c9177b2f3150ed0647b90a94307c28452fe0a5401863044216aed83addd6c7c5
+      sha256: "5b611dbcb9bab33e7073594ecac111bf0a86ffc342652c2081160d7038a45fb6"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.2"
+    version: "2.4.3"
   sqlite3:
     dependency: "direct main"
     description:
       name: sqlite3
-      sha256: "144132790ec1947fad9f3ddceffd0af2ab80a1f0d1e81a4d094ee6707ec3df0b"
+      sha256: "5340531ad17f386ae444873f643f281060b6238cc702edeee6b1e90bc4c6874e"
       url: "https://pub.dev"
     source: hosted
-    version: "3.7.1"
+    version: "3.8.0"
   sqlite3_flutter_libs:
     dependency: "direct main"
     description:
@@ -774,18 +774,18 @@ packages:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_charts
-      sha256: "4c6828966445e8bddbeb1a480a6a1f50aa080db05501cacf038bd41e8ce3af9f"
+      sha256: "0f0dc2bef92898dcb77f387a4184c540e58af4a02889c5e17076b566bb740b87"
       url: "https://pub.dev"
     source: hosted
-    version: "35.1.40+1"
+    version: "35.1.42"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "77b8bba92bc4eb33332fe66495eeab5f7a2eb3d7569f9accf4a554847c90e521"
+      sha256: "366faa4c374fdc0a789eb1d234c78ddbaca34ae575fe8a6481f9f72db5eb0d69"
       url: "https://pub.dev"
     source: hosted
-    version: "35.1.40+1"
+    version: "35.1.42"
   synchronized:
     dependency: transitive
     description:
